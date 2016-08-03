@@ -1,0 +1,14 @@
+완료된 내용
+- Credit_analysis.m : DONE
+- LogisticRegression.m: DONE
+- Rosenbrock.m: DONE [gradient.m에서 참조]
+- RosenbrockDeriv.m: DONE [gradient.m에서 참조]
+- GenDisc.m : DONE. python plotting 특성상 중첩된 plotting 힘듬
+
+변경이 필요한 내용
+- gradient.m : 마지막 3D Ploting  수정 필요
+
+
+변경하지 않은 내용
+- fit_logistics.m : 참조하는 함수 없음
+- GradientLinearRegression.m : 실행되지 않는 코드
