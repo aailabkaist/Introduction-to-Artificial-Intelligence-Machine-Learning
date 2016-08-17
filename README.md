@@ -6,6 +6,7 @@ Course Description :
 Brief Course Schedule : 
 
   Week 1.  Motivation and basics
+  
   Week 2.  Fundamentals of machine learning
   Week 3.  Naive Bayes Classifier
   Week 4.  Logistic Regression Classifier
