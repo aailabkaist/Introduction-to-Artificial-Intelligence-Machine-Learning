@@ -1,0 +1,17 @@
+완료된 작업
+- ClusterSynthesis.m
+- drawRandomFromWeights.m
+- GibbsGMM.m : 
+- CompareEMandGibbsByGMM: 
+- GibbsGMM_DynamicUpdate: 완료 But 원래 코드 문제있음
+- MHSamplings
+- RejectionSamplings
+- importanceSampling
+- Samplings
+- Untitled.m 
+- displayStackedHistogram.m
+
+진행중인 작업
+
+작업하지 않은 코드
+- LDA : 완성되지 않은 코드
