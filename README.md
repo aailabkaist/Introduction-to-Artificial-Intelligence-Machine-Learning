@@ -5,6 +5,7 @@
   Lecture Video URL : https://www.youtube.com/channel/UC9caTTXVw19PtY07es58NDg
   
   
+  
 ## Brief Course Schedule : 
 
   Week 1.  Motivation and basics
