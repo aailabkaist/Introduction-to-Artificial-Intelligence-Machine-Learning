@@ -27,3 +27,5 @@
   Week 10. Hidden Markov Model
   
   Week 11. Sampling Based Inference
+  
+  강의 동영상 URL: https://www.youtube.com/channel/UC9caTTXVw19PtY07es58NDg
