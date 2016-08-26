@@ -2,11 +2,6 @@
 
   The discipline of Industrial engineering utilizing artificial intelligence and machine learning techniques in diverse applications. This course will teach the supervised learning methods, the unsupervised learning methods, as well as the applications of probabilistic graphical learning models. These methods are applicable to quality control, text mining, time series analyses, etc.
   
-###AA
-  Lecture Video URL : https://www.youtube.com/channel/UC9caTTXVw19PtY07es58NDg
-  
-  
-  
 ## Brief Course Schedule : 
 
   Week 1.  Motivation and basics
@@ -30,4 +25,8 @@
   Week 10. Hidden Markov Model
   
   Week 11. Sampling Based Inference
+  
+###Lecture :
+  Lecture Video URL : https://www.youtube.com/channel/UC9caTTXVw19PtY07es58NDg
+  
   
