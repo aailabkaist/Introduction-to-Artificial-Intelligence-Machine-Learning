@@ -27,7 +27,7 @@
   Week 11. Sampling Based Inference
   
 ##Online Lectures Video :
-  You can find Online Lectures on Youtube.
+  You can find Online Lectures on YouTube.
   Lecture Video URL : https://www.youtube.com/channel/UC9caTTXVw19PtY07es58NDg
   
   
