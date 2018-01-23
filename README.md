@@ -5,6 +5,7 @@
 ## Brief Course Schedule : 
   
   (introduction)
+  
   Week 1.  Motivation and basics
   
   Week 2.  Fundamentals of machine learning
@@ -26,6 +27,7 @@
   Week 10. Sampling Based Inference
   
   (Advanced)
+  
   Week 11. Variational Inference
   
   Week 12. Dirichlet process
