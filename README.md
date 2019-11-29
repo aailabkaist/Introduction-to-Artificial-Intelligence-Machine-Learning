@@ -36,12 +36,6 @@
   
   Week 14. Neural Network
   
-  Week 16. Recurrent Neural Network
-  
-  Week 17. Deep Generative Model
-  
-  Week 18. Undirected Probabilistic Graphical Model
-  
 ##Online Lectures Video :
   You can find Online Lectures on YouTube.
   
