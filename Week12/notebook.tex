@@ -1,0 +1,1052 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Chapter\_12-Gaussian\_Process}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{uxac00uxc6b0uxc2dcuxc548-uxd504uxb85cuxc138uxc2a4-gaussian-process}{%
+\section{가우시안 프로세스 (Gaussian
+Process)}\label{uxac00uxc6b0uxc2dcuxc548-uxd504uxb85cuxc138uxc2a4-gaussian-process}}
+
+\#\#\#
+
+Moon Il-chul(icmoon@kaist.ac.kr); Kim Hye-mi(khm0308@kaist.ac.kr); Na
+Byeong-hu(wp03052@kaist.ac.kr)
+
+본 코드의 목적은 가우시안 프로세스 리그레션(Gaussian Process
+Regression)을 통해 샘플링한 데이터를 바탕으로 실제함수를 추정하는
+것입니다. 이는 관찰된 포인트 집합을 다변수 정규분포를 따르는
+\(T_N = [t_1, t_2, ..., t_N]^T\)라고 가정하여, \(T_N\)을 바탕으로
+\(t_{N+1}\)의 확률분포인 \(P(t_{N+1}|T_N)\)을 찾음으로써 달성할 수
+있습니다.
+
+\hypertarget{ptuxc758-uxd655uxb960uxbd84uxd3ec}{%
+\subsubsection{\texorpdfstring{\(P(T)\)의
+확률분포}{P(T)의 확률분포}}\label{ptuxc758-uxd655uxb960uxbd84uxd3ec}}
+
+먼저 연속 도메인 위 \(N\)개의 포인트 집합
+\(X_n=[x_1, x_2, ..., x_n]^T\)이 \(M\)차원으로 매핑될 때, \(M\)차원의
+웨이트 벡터를 \(W\), 매핑된 잠재함수의 값을
+\(Y_n=[y_1, y_2, ..., y_n]^T\)이라 할 때, 추정하는 잠재함수 \(Y\)의
+확률분포를 구하면 다음과 같습니다.
+
+\[P(Y) = N(W|\space0, K)\]
+
+이때, \(W=[w_1, w_2, ..., w_M]^T\),
+\(K_{nm} = K(x_n, x_m) = \frac{1}{\alpha}\phi(x_n)\phi(x_m)\)
+
+여기서 하나의 포인트 \(x_n\)에 대해 실제 관측된 값을 \(t_n\), 가우시안
+에러를 \(e_n\)이라고 하면, \(t_n=y_n+e_n\)이 성립합니다. 이에 따라
+\(P(T|\space Y)\)를 구하면 다음과 같습니다.
+
+\[P(T|\space Y)=N(T|\space Y, \beta^{-1}I_N)\]
+
+여기서 다변수 정규분포의 성질을 이용하여 단일분포 \(P(T)\)를 구하면
+다음과 같은 식으로 나타납니다.
+
+\[P(T)=N\left(T \middle| \space 0, \frac{1}{\beta}I_N+K\right)\]
+
+\hypertarget{pt_n1uxc758-uxd655uxb960uxbd84uxd3ec}{%
+\subsubsection{\texorpdfstring{\(P(t_{N+1})\)의
+확률분포}{P(t\_\{N+1\})의 확률분포}}\label{pt_n1uxc758-uxd655uxb960uxbd84uxd3ec}}
+
+\(T_N\)에 \(t_{N+1}\)을 추가한 \(T_{N+1}\)의 확률분포는 다음과 같습니다.
+
+\[P(T_{N+1})=P(T_N,\space t_{N+1})=N\left(T \middle| \space0,\begin{pmatrix}
+\frac{1}{\beta}I_N+K & k_{1(N+1)} \\
+k_{(N+1)1} &  k_{(N+1)(N+1)}+\frac{1}{\beta}
+\end{pmatrix}\right)\]
+
+\[cov_{N+1}=\begin{bmatrix}
+cov_N & k \\
+k^T &  c
+\end{bmatrix}\]
+
+다변수 정규분포의 특징을 이용하면, 위의 분포를 통해 아래의 조건분포를
+구할 수 있습니다.
+
+\[P\left(t_{N+1}\middle|T_N\right)=N\left(t_{N+1}\middle|\space 0+k^{T}cov_N^{-1}(T_N-0),\space c-k^Tcov_N^{-1}k\right)\]
+
+따라서
+\(\mu_{t_{N+1}}\mid T_N = k^{T}cov_N^{-1}T_N,\space \sigma_{t_{N+1}}\mid T_N = c-k^Tcov_N^{-1}k\)입니다.
+
+\hypertarget{uxcee4uxb110uxd568uxc218}{%
+\subsubsection{커널함수}\label{uxcee4uxb110uxd568uxc218}}
+
+본 코드는 아래와 같은 커널함수를 이용하여 공분산행렬을 구성하고 데이터
+값을 예측합니다.
+\[K_{nm} = k(x_n, x_m) = \theta_0 exp\left(-\frac{\theta_1}{2}\|x_n-x_m\|^2\right)+\theta_2+\theta_3 x_n^T x_m\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{@ copyright: AAI lab (http://aailab.kaist.ac.kr/xe2/page\PYZus{}GBex27)}
+        \PY{l+s+sd}{@ author: Moon Il\PYZhy{}chul: icmoon@kaist.ac.kr}
+        \PY{l+s+sd}{@ annotated by Kim Hye\PYZhy{}mi: khm0308@kaist.ac.kr; Na Byeong\PYZhy{}hu: wp03052@kaist.ac.kr}
+        \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{norm}
+        \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{linalg}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} 본 코드에서 사용하는 커널함수 (Tensorflow를 사용하여 데이터를 바탕으로 parameter를 학습함)}
+        \PY{k}{def} \PY{n+nf}{KernelFunctionWithTensorFlow}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{theta1}\PY{p}{,} \PY{n}{theta2}\PY{p}{,} \PY{n}{theta3}\PY{p}{,} \PY{n}{X1}\PY{p}{,} \PY{n}{X2}\PY{p}{)}\PY{p}{:}  
+            \PY{n}{insideExp} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{div}\PY{p}{(}\PY{n}{theta1}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{p}{(}\PY{n}{X1} \PY{o}{\PYZhy{}} \PY{n}{X2}\PY{p}{)}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X1} \PY{o}{\PYZhy{}} \PY{n}{X2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{firstTerm} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{insideExp}\PY{p}{)}\PY{p}{)}
+            \PY{n}{secondTerm} \PY{o}{=} \PY{n}{theta2}
+            \PY{n}{thridTerm} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{theta3}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{X1}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{ret} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{firstTerm}\PY{p}{,} \PY{n}{secondTerm}\PY{p}{)}\PY{p}{,} \PY{n}{thridTerm}\PY{p}{)}
+            \PY{k}{return} \PY{n}{ret}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} 본 코드에서 사용하는 커널함수 (위와 식은 동일하나, 학습하지 않음)}
+        \PY{k}{def} \PY{n+nf}{KernelFunctionWithoutTensorFlow}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{X1}\PY{p}{,} \PY{n}{X2}\PY{p}{)}\PY{p}{:}
+            \PY{n}{ret} \PY{o}{=} \PY{n}{theta}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{theta}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{/} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{X1}\PY{p}{,} \PY{n}{X2}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{X1}\PY{p}{,} \PY{n}{X2}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PYZbs{}
+                    \PY{o}{+} \PY{n}{theta}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{+} \PY{n}{theta}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X1}\PY{p}{)}\PY{p}{,} \PY{n}{X2}\PY{p}{)}
+            \PY{k}{return} \PY{n}{ret}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{trainingX}\PY{p}{,} \PY{n}{trainingY}\PY{p}{)}\PY{p}{:}
+            \PY{n}{tf}\PY{o}{.}\PY{n}{reset\PYZus{}default\PYZus{}graph}\PY{p}{(}\PY{p}{)}
+            \PY{n}{numDataPoints} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{trainingY}\PY{p}{)}
+            \PY{n}{numDimension} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{trainingX}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} input과 output (for Tensorflow)}
+            \PY{n}{obsX} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{n}{numDataPoints}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}
+            \PY{n}{obsY} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{placeholder}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{,} \PY{p}{[}\PY{n}{numDataPoints}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} 학습할 parameter (for TensorFlow)}
+            \PY{n}{theta0} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+            \PY{n}{theta1} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+            \PY{n}{theta2} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+            \PY{n}{theta3} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+            \PY{n}{beta} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} 커널 함수를 이용하여 공분산 행렬을 구성함}
+            \PY{n}{matCovarianceLinear} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numDataPoints}\PY{p}{)}\PY{p}{:}
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numDataPoints}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{kernelEvaluationResult} \PY{o}{=} \PY{n}{KernelFunctionWithTensorFlow}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{theta1}\PY{p}{,} \PY{n}{theta2}\PY{p}{,} \PY{n}{theta3}\PY{p}{,}
+                                                                          \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                                                                          \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                    \PY{k}{if} \PY{n}{i} \PY{o}{!=} \PY{n}{j}\PY{p}{:}
+                        \PY{n}{matCovarianceLinear}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kernelEvaluationResult}\PY{p}{)}
+                    \PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{n}{j}\PY{p}{:}
+                        \PY{n}{matCovarianceLinear}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kernelEvaluationResult} \PY{o}{+} \PY{n}{tf}\PY{o}{.}\PY{n}{div}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{beta}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n}{matCovarianceCombined} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{convert\PYZus{}to\PYZus{}tensor}\PY{p}{(}\PY{n}{matCovarianceLinear}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{float32}\PY{p}{)}
+            \PY{n}{matCovariance} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{matCovarianceCombined}\PY{p}{,} \PY{p}{[}\PY{n}{numDataPoints}\PY{p}{,} \PY{n}{numDataPoints}\PY{p}{]}\PY{p}{)}
+            \PY{n}{matCovarianceInv} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{matrix\PYZus{}inverse}\PY{p}{(}\PY{n}{matCovariance}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} 공분산 행렬을 바탕으로 예측값과 예측값의 분산을 구함}
+            \PY{n}{sumsquarederror} \PY{o}{=} \PY{l+m+mf}{0.0}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numDataPoints}\PY{p}{)}\PY{p}{:}
+                \PY{n}{k} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{[}\PY{n}{numDataPoints}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numDataPoints}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{kernelEvaluationResult} \PY{o}{=} \PY{n}{KernelFunctionWithTensorFlow}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{theta1}\PY{p}{,} \PY{n}{theta2}\PY{p}{,} \PY{n}{theta3}\PY{p}{,}
+                                                                          \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                                                                          \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{indices} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{tempTensor} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{tempTensor} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tempTensor}\PY{p}{,} \PY{n}{kernelEvaluationResult}\PY{p}{)}
+                    \PY{n}{tf}\PY{o}{.}\PY{n}{scatter\PYZus{}update}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{indices}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{tempTensor}\PY{p}{)}
+                    
+                \PY{n}{c} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Variable}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                \PY{n}{kernelEvaluationResult} \PY{o}{=} \PY{n}{KernelFunctionWithTensorFlow}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{theta1}\PY{p}{,} \PY{n}{theta2}\PY{p}{,} \PY{n}{theta3}\PY{p}{,}
+                                                                      \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                                                                      \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsX}\PY{p}{,} \PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDimension}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                
+                \PY{n}{c} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{kernelEvaluationResult}\PY{p}{)}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{div}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{beta}\PY{p}{)}\PY{p}{)}
+        
+                \PY{n}{k} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numDataPoints}\PY{p}{]}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} 예측값 및 예측값의 표준편차}
+                \PY{n}{predictionMu} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{matCovarianceInv}\PY{p}{,} \PY{n}{obsY}\PY{p}{)}\PY{p}{)}
+                \PY{n}{predictionVar} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{matCovarianceInv}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} 예측값과 실제값의 sum of squared error를 구함}
+                \PY{n}{sumsquarederror} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{sumsquarederror}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{pow}\PY{p}{(}\PY{n}{tf}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{predictionMu}\PY{p}{,} \PY{n}{tf}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{obsY}\PY{p}{,} \PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} Training session declaration}
+            \PY{c+c1}{\PYZsh{} Gradient Descent Optimizer를 활용하여 sum of squared error를 최소화하는 parameter를 구함}
+            \PY{n}{training} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{GradientDescentOptimizer}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{o}{.}\PY{n}{minimize}\PY{p}{(}\PY{n}{sumsquarederror}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} Session을 초기화함}
+            \PY{n}{gpu\PYZus{}options} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{GPUOptions}\PY{p}{(}\PY{n}{per\PYZus{}process\PYZus{}gpu\PYZus{}memory\PYZus{}fraction}\PY{o}{=}\PY{l+m+mf}{0.333}\PY{p}{)}
+            \PY{n}{sess} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{Session}\PY{p}{(}\PY{n}{config}\PY{o}{=}\PY{n}{tf}\PY{o}{.}\PY{n}{ConfigProto}\PY{p}{(}\PY{n}{gpu\PYZus{}options}\PY{o}{=}\PY{n}{gpu\PYZus{}options}\PY{p}{)}\PY{p}{)}
+            \PY{n}{init} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{global\PYZus{}variables\PYZus{}initializer}\PY{p}{(}\PY{p}{)}
+            \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{init}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Check PSD}
+            \PY{k}{def} \PY{n+nf}{isPSD}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}8}\PY{p}{)}\PY{p}{:}
+                \PY{n}{E}\PY{p}{,}\PY{n}{V} \PY{o}{=} \PY{n}{linalg}\PY{o}{.}\PY{n}{eigh}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+                \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{n}{E} \PY{o}{\PYZgt{}} \PY{o}{\PYZhy{}}\PY{n}{tol}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} 학습을 위해 Session을 실행}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+                \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{training}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}
+        
+                \PY{n}{trainedTheta} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{n}{trainedTheta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{theta0}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+                \PY{n}{trainedTheta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{theta1}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+                \PY{n}{trainedTheta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{theta2}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+                \PY{n}{trainedTheta}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{theta3}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+                \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{sess}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{n}{beta}\PY{p}{,} \PY{n}{feed\PYZus{}dict}\PY{o}{=}\PY{p}{\PYZob{}}\PY{n}{obsX}\PY{p}{:} \PY{n}{trainingX}\PY{p}{,} \PY{n}{obsY}\PY{p}{:} \PY{n}{trainingY}\PY{p}{\PYZcb{}}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}print(\PYZdq{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} Iteration \PYZdq{}, i, \PYZdq{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZdq{})}
+                \PY{c+c1}{\PYZsh{}print(\PYZdq{}Sum of Squared Error : \PYZdq{},sess.run(sumsquarederror, feed\PYZus{}dict=\PYZob{}obsX: trainingX, obsY: trainingY\PYZcb{}))}
+                \PY{c+c1}{\PYZsh{}print(\PYZdq{}Theta : \PYZdq{},trainedTheta)}
+                \PY{c+c1}{\PYZsh{}print(\PYZdq{}Beta : \PYZdq{},trainedBeta)}
+            
+            \PY{n}{sess}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} 학습된 parameter를 return함}
+            \PY{k}{return} \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{snr} \PY{o}{=} \PY{l+m+mf}{0.2} \PY{c+c1}{\PYZsh{} signal to noise ratio}
+        \PY{n}{numObservePoints} \PY{o}{=} \PY{l+m+mi}{5}
+        \PY{n}{numInputDimension} \PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        \PY{n}{numTruePoints} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{trueY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{X}\PY{p}{)} \PY{c+c1}{\PYZsh{} 실제함수}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{trainingX} \PY{o}{=} \PY{p}{[}\PY{p}{]} \PY{c+c1}{\PYZsh{} training에 이용할 X 데이터}
+        \PY{n}{trainingY} \PY{o}{=} \PY{p}{[}\PY{p}{]} \PY{c+c1}{\PYZsh{} training에 이용할 Y 데이터}
+        
+        \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numObservePoints}\PY{p}{)}\PY{p}{:}
+            \PY{n}{sampleX} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)}
+            \PY{n}{trainingX}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleX}\PY{p}{]}\PY{p}{)}
+            \PY{n}{trainingY}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{sampleX}\PY{p}{)} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+        \PY{n}{numPoints} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{trainingX}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{training set of X: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{trainingX}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{training set of Y: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{trainingY}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+training set of X:  [[3.391299497541918], [6.089790468622297], [5.749383898293203], [1.1471867004267506], [2.750539925566083]]
+training set of Y:  [[-0.3137204147759303], [-0.30517652007738044], [-0.0727691236929981], [0.9031585416912293], [0.33506478937059775]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{trainingX}\PY{p}{,} \PY{n}{trainingY}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} Trained Result \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Theta : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{trainedTheta}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Beta : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+---------------------- Trained Result -----------------
+Theta :  [0.8447998, 0.8332223, 1.0954661, 0.95990527]
+Beta :  1.4701568
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{PredictionGaussianProcessRegression}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{beta}\PY{p}{,} \PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n}{numPoints}\PY{p}{,} \PY{n}{sampleX}\PY{p}{,} \PY{n}{sampleY}\PY{p}{,} \PY{n}{inputElement}\PY{p}{)}\PY{p}{:}
+            \PY{n}{k} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numPoints}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numPoints}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} 추가한 t\PYZus{}\PYZob{}N+1\PYZcb{}과 기존 T\PYZus{}N으로 인해 추가되는 공분산 행렬의 k행렬 영역}
+                \PY{n}{k}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{KernelFunctionWithoutTensorFlow}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{sampleX}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{inputElement}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} 추가한 t\PYZus{}\PYZob{}N+1\PYZcb{}로 인해 변경되는 공분산 행렬의 c영역}
+            \PY{n}{c} \PY{o}{=} \PY{n}{KernelFunctionWithoutTensorFlow}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{inputElement}\PY{p}{,} \PY{n}{inputElement}\PY{p}{)} \PY{o}{+} \PY{l+m+mf}{1.0} \PY{o}{/} \PY{n}{beta}
+            
+            \PY{c+c1}{\PYZsh{} P(t\PYZus{}n+1) 확률분포의 평균과 표준편차}
+            \PY{n}{mu} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n}{sampleY}\PY{p}{)}\PY{p}{)}
+            \PY{n}{var} \PY{o}{=} \PY{n}{c} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{k}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{return} \PY{n}{mu}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{var}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} 커널 함수를 이용하여 공분산 행렬을 나타냄}
+         \PY{k}{def} \PY{n+nf}{KernelCalculation}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{beta}\PY{p}{,} \PY{n}{numPoints}\PY{p}{,} \PY{n}{sampleX}\PY{p}{)}\PY{p}{:}
+             \PY{n}{C} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{numPoints}\PY{p}{,} \PY{n}{numPoints}\PY{p}{)}\PY{p}{)}
+         
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numPoints}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numPoints}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{KernelFunctionWithoutTensorFlow}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{sampleX}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{sampleX}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+                     \PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{n}{j}\PY{p}{:}
+                         \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mf}{1.0} \PY{o}{/} \PY{n}{beta}
+         
+             \PY{k}{return} \PY{n}{C}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{C}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k}{def} \PY{n+nf}{PlottingGaussianProcessRegression}\PY{p}{(}\PY{n}{plotN}\PY{p}{,} \PY{n}{strTitle}\PY{p}{,} \PY{n}{inputs}\PY{p}{,} \PY{n}{mu\PYZus{}next}\PY{p}{,} \PY{n}{sigma2\PYZus{}next}\PY{p}{,} \PY{n}{sampleX}\PY{p}{,} \PY{n}{sampleY}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{strTitle}\PY{p}{)}
+         
+             \PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{inputs}\PY{p}{,} \PY{n}{mu\PYZus{}next} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{sigma2\PYZus{}next}\PY{p}{)}\PY{p}{,} \PY{n}{mu\PYZus{}next} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{sigma2\PYZus{}next}\PY{p}{)}\PY{p}{,}
+                              \PY{n}{color}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n}{sampleY}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)} \PY{c+c1}{\PYZsh{} training set은 빨강색 +로 표시함}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{trueY}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} 실제함수는 초록색 실선으로 나타냄}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{inputs}\PY{p}{,} \PY{n}{mu\PYZus{}next}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bo\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)} \PY{c+c1}{\PYZsh{} 예측값은 파란색 점으로 나타나며, 실선으로 이어짐}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} 커널 parameter가 학습되지 않은 경우와 학습된 경우를 비교함}
+         \PY{n}{sampleXs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{sampleYs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{showVisualization} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}
+         \PY{n}{numMaxPoints} \PY{o}{=} \PY{l+m+mi}{50}
+         \PY{n}{theta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{beta} \PY{o}{=} \PY{l+m+mi}{300}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{plotN} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numMaxPoints}\PY{p}{)}\PY{p}{:}
+             \PY{n}{sampleX} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)}
+             \PY{n}{sampleXs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleX}\PY{p}{]}\PY{p}{)}
+             \PY{n}{sampleYs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{sampleX}\PY{p}{)} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} sampleY는 실제함수에 노이즈(snr * np.random.randn())가 더해진 값으로 우리가 실제로 얻게 되는 데이터 값을 의미함}
+             \PY{n}{inputs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{} parameter를 학습하지 않은 경우}
+             \PY{n}{mu\PYZus{}next} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{sigma2\PYZus{}next} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                 \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{beta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{itr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{PredictionGaussianProcessRegression}\PY{p}{(}\PY{n}{theta}\PY{p}{,} \PY{n}{beta}\PY{p}{,} \PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,}
+                                                                   \PY{n}{inputs}\PY{p}{[}\PY{n}{itr1}\PY{p}{]}\PY{p}{)}
+                     \PY{n}{mu\PYZus{}next}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mu}\PY{p}{)}
+                     \PY{n}{sigma2\PYZus{}next}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+         
+                 \PY{n}{PlottingGaussianProcessRegression}\PY{p}{(}\PY{n}{plotN}\PY{p}{,}
+                                                   \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Without Kernel Parameter Learning After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                                                   \PY{n}{inputs}\PY{p}{,} \PY{n}{mu\PYZus{}next}\PY{p}{,} \PY{n}{sigma2\PYZus{}next}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+             
+             \PY{c+c1}{\PYZsh{} parameter를 학습한 경우}
+             \PY{n}{mu\PYZus{}next} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{sigma2\PYZus{}next} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}  
+                 \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+                 \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+         
+                 \PY{k}{for} \PY{n}{itr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{inputs}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{PredictionGaussianProcessRegression}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,}
+                                                                   \PY{n}{sampleYs}\PY{p}{,} \PY{n}{inputs}\PY{p}{[}\PY{n}{itr1}\PY{p}{]}\PY{p}{)}
+                     \PY{n}{mu\PYZus{}next}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mu}\PY{p}{)}
+                     \PY{n}{sigma2\PYZus{}next}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+         
+                 \PY{n}{PlottingGaussianProcessRegression}\PY{p}{(}\PY{n}{plotN}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{With Kernel Parameter Learning After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                                                   \PY{n}{inputs}\PY{p}{,} \PY{n}{mu\PYZus{}next}\PY{p}{,} \PY{n}{sigma2\PYZus{}next}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{uxacb0uxacfcuxd574uxc11duxbd80}{%
+\subsubsection{결과해석부}\label{uxacb0uxacfcuxd574uxc11duxbd80}}
+
+왼쪽열의 그래프는 학습을 하지 않았을 때, 오른쪽 열의 그래프는 학습 후의
+가우시안 프로세스 리그레션 결과입니다. tensorflow를 활용하여 변수(평균과
+분산)를 학습하였을 때의 결과가 실제함수를 더 잘 예측하고 있음을 확인할
+수 있습니다.
+
+그래프에서 초록색 실선은 실제함수를, 빨강색 + 점은 샘플링 값을, 파랑색
+실선은 0.3 간격으로 찍힌 포인트 집합 에서 가우시안 프로세스 리그레션을
+바탕으로 구한 예측값(평균값)을 연결한 선입니다. 파랑색 실선 주위에
+표시된 영역은 각 지점에서 예측된 함수의 분산을 나타냅니다.
+
+위 그래프를 통해 샘플링 된 지점의 분산이 감소하는 것을 확인할 수 있으며,
+샘플링 횟수가 증가할수록 가우시안 프로세스 리그레션을 통해 추정한 함수가
+실제함수와 유사해짐을 확인할 수 있습니다.
+
+    \hypertarget{uxbca0uxc774uxc9c0uxc548-uxcd5cuxc801uxd654}{%
+\section{베이지안
+최적화}\label{uxbca0uxc774uxc9c0uxc548-uxcd5cuxc801uxd654}}
+
+베이지안 최적화는 순차적이고 입력값을 정할 수 있는 실험을 진행한다고
+가정할 때, 결과값을 최대 혹은 최소로 만드는 입력값(input)을 찾는 것을
+목표로 합니다. 이를 수식으로 나타내면 아래와 같습니다.
+\[ x^{*} = argmax_{x\in X}f(x)\] 베이지안 최적화는 우리가 결과값을
+결정하는 잠재함수를 모른다는 점, 결과값과 입력값이 연속적이다는 점,
+결과값이 확률적(stochastic)으로 발생한다는 점이 특징입니다. 베이시안
+최적화는 분산을 줄여주게끔 샘플링하 exploitation 과정과 평균이 커지는
+지점을 반복하여 샘플링하는 exploration 과정을 반복하여 잠재함수를
+실제함수와 유사하게 학습시킵니다. 여기서 적절한 샘플링 방식을 결정해주는
+함수가 `Acquisition Function'으로 크게 Maximum Probability Improvement와
+Maximum Expected Improvement가 있습니다.
+
+\hypertarget{mpi-maximum-probability-improvement}{%
+\subsubsection{MPI (Maximum Probability
+Improvement)}\label{mpi-maximum-probability-improvement}}
+
+기존의 데이터 \(D\)가 가지고 있는 함수 \(f(x)\)의 최대값을 \(y_{max}\),
+새로운 샘플링 포인트 \(x\)를 잡았을 때의 합수값 \(y = f(x)\)라고 할 때,
+\(y\)가 \(y_{max}\)보다 margin \(m\)만큼 혹은 더 크게 할 확률 중, 가장
+높은 확률을 가지게 하는 \(x\)를 구하는 방법입니다. 이는 아래와 같은
+수식으로 표현됩니다.
+\[ MPI(x|D) = argmax_{x}\space\phi\left(\frac{\mu-(1+m)y_{max}}{\sigma}\right)\]
+
+\hypertarget{mei-maximum-expected-improvement}{%
+\subsubsection{MEI (Maximum Expected
+Improvement)}\label{mei-maximum-expected-improvement}}
+
+Maximum Expected Improvement는 margin \(m\)을 \(0\)에서 무한대까지
+순차적으로 변화시킴으로써 \(m\)에 대한 평균값이 가장 큰 \(x\)를
+구합니다. Maximum Probability of Improvement에서 \(m\)의 최적값을
+구해야하는 점을 보완한 것입니다. 여기서는 다음과 같은 가정을 합니다.
+\[y = f(x), y_{max} = max_{m=1,··· ,n}f(x_n)\]
+
+\[u = \frac{y_{max} − \mu}{\sigma}, v=\frac{u-\mu}{\sigma}\]
+
+\[\mu = f\left(x \mid D\right), \sigma = K\left(x \mid D\right)\]
+
+\[m = \max\left(0, y − y_{max}\right) = \max\left(0,\left(v − u\right)\sigma\right)\]
+
+이 때, Maximum Expected Improvement는 아래와 같은 수식으로 표현됩니다.
+\[MEI\left(x \mid D\right) = argmax_x \int_{0}^{\infty}P(y_{max} + m)m dm = \frac{1}{2}\sigma^2\left(-u\phi(u)+(1+u^2)\Phi(-u)\right)\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} MPI}
+         \PY{k}{def} \PY{n+nf}{AcquisitionFunctionProbImprovement}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n}{sampleY}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}\PY{p}{:}
+             \PY{n}{numSamples} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleY}\PY{p}{)}
+         
+             \PY{n}{idxMax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{n}{Ymax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1000000}
+             
+             \PY{c+c1}{\PYZsh{} 샘플 Y의 최대값과 이를 값으로 가지는 index를 찾음}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numSamples}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{sampleY}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{Ymax}\PY{p}{:}
+                     \PY{n}{Ymax} \PY{o}{=} \PY{n}{sampleY}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{idxMax} \PY{o}{=} \PY{n}{itr}
+             
+             \PY{c+c1}{\PYZsh{} 각 샘플에서의 probability of improvement를 구함}
+             \PY{n}{probImprovements} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Mus}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{probImprovements}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{Mus}\PY{p}{[}\PY{n}{itr}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{m}\PY{p}{)} \PY{o}{*} \PY{n}{Ymax}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{probImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{probImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Prob Improvements : \PYZdq{},probImprovements)}
+         
+             \PY{n}{idxProbMax} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{Probmax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{c+c1}{\PYZsh{} Probability of Improvement를 최대화하는 샘플 X를 찾음}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Mus}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{probImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{Probmax}\PY{p}{:}
+                     \PY{n}{Probmax} \PY{o}{=} \PY{n}{probImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]}
+                     \PY{n}{idxProbMax} \PY{o}{=} \PY{n}{itr}
+         
+             \PY{k}{return} \PY{n}{Xs}\PY{p}{[}\PY{n}{idxProbMax}\PY{p}{]}\PY{p}{,} \PY{n}{probImprovements}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{}MEI}
+         \PY{k}{def} \PY{n+nf}{AcquisitionFunctionExpectedImprovement}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n}{sampleY}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}\PY{p}{:}
+             \PY{n}{numSamples} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleY}\PY{p}{)}
+         
+             \PY{n}{idxMax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{n}{Ymax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1000000}
+             
+             \PY{c+c1}{\PYZsh{} 샘플 Y의 최대값과 이를 값으로 가지는 index를 찾음}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numSamples}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{sampleY}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{Ymax}\PY{p}{:}
+                     \PY{n}{Ymax} \PY{o}{=} \PY{n}{sampleY}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                     \PY{n}{idxMax} \PY{o}{=} \PY{n}{itr}
+             
+             \PY{c+c1}{\PYZsh{} 각 샘플에서의 expected improvement를 구함}
+             \PY{n}{expectedImprovements} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Mus}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{u} \PY{o}{=} \PY{p}{(}\PY{n}{Ymax} \PY{o}{\PYZhy{}} \PY{n}{Mus}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{[}\PY{n}{itr}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{expectedImprovements}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{[}\PY{n}{itr}\PY{p}{]} \PY{o}{*} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{u} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{u}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n+nb}{pow}\PY{p}{(}\PY{n}{u}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{norm}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{u}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Expected Improvements : \PYZdq{},expectedImprovements)}
+         
+             \PY{n}{idxEIMax} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{EImax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{c+c1}{\PYZsh{} Expected Improvement를 최대화하는 샘플 X를 찾음}
+             \PY{k}{for} \PY{n}{itr} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Mus}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{expectedImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{EImax}\PY{p}{:}
+                     \PY{n}{EImax} \PY{o}{=} \PY{n}{expectedImprovements}\PY{p}{[}\PY{n}{itr}\PY{p}{]}
+                     \PY{n}{idxEIMax} \PY{o}{=} \PY{n}{itr}
+         
+             \PY{k}{return} \PY{n}{Xs}\PY{p}{[}\PY{n}{idxEIMax}\PY{p}{]}\PY{p}{,} \PY{n}{expectedImprovements}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Bayesian Optimization Result와 각 Acquisition Function 함수의 변화 비교}
+         \PY{c+c1}{\PYZsh{} 본 코드에서는 MPI(Maximum Probability Improvment)로 Sampling을 진행함}
+         \PY{n}{snr} \PY{o}{=} \PY{l+m+mf}{0.1}
+         \PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+         \PY{n}{numTruePoints} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{trueY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numTruePoints}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+             \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{trueY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{trueY}\PY{p}{,}\PY{n}{S\PYZus{}X}\PY{p}{)}
+         
+         \PY{n}{sampleXs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{sampleYs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{showVisualization} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{19}\PY{p}{]}
+         \PY{n}{numTrials} \PY{o}{=} \PY{n}{showVisualization}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{+}\PY{l+m+mi}{1}
+         \PY{n}{trainedTheta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{trainedBeta} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{kernelLearning} \PY{o}{=} \PY{k+kc}{True}
+         
+         \PY{n}{acquisitionFunction} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ProbImprovement}\PY{l+s+s1}{\PYZsq{}}
+         \PY{c+c1}{\PYZsh{}acquisitionFunction = \PYZsq{}ExpectedImprovement\PYZsq{}}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{plotN} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{c+c1}{\PYZsh{}초기 X값 설정}
+         \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             \PY{n}{sampleX} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)}
+             \PY{n}{sampleXs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleX}\PY{p}{]}\PY{p}{)}
+             \PY{n}{sampleY} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{sampleY} \PY{o}{+}\PY{o}{=} \PY{n}{S\PYZus{}X}
+             \PY{n}{sampleYs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleY} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} kernel Learning을 시킬경우, 아래의 조건문을 실행함}
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}Learning Kernel Parameters.........\PYZdq{})}
+         \PY{k}{if} \PY{n}{kernelLearning} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+         \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}Trained Kernel Parameters : \PYZdq{}, trainedTheta, trainedBeta)}
+         
+         \PY{c+c1}{\PYZsh{} Bayesian Optimization 수행}
+         \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numTrials}\PY{p}{)}\PY{p}{:}
+         
+             \PY{n}{Xs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+             \PY{n}{Mus} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{Sigmas} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculating Predicted Values.........\PYZdq{})}
+             \PY{k}{for} \PY{n}{itr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Xs}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{PredictionGaussianProcessRegression}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,}
+                                                               \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{[}\PY{n}{itr1}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{Mus}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mu}\PY{p}{)}
+                 \PY{n}{Sigmas}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculated Results : \PYZdq{},Mus,Sigmas)}
+         
+             \PY{c+c1}{\PYZsh{} Acquisition Function에 따라 위에서 구한 파라미터를 대입하여 다음 샘플링 포인트를 찾아줌}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculating Acquisition Values.........\PYZdq{})}
+             \PY{k}{if} \PY{n}{acquisitionFunction} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ProbImprovement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{nextX}\PY{p}{,} \PY{n}{probImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionProbImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                     \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{expectedImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionExpectedImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+             \PY{k}{if} \PY{n}{acquisitionFunction} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ExpectedImprovement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{nextX}\PY{p}{,} \PY{n}{expectedImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionExpectedImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                     \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{probImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionProbImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Learning Kernel Parameters.........\PYZdq{})}
+             \PY{c+c1}{\PYZsh{} Acquisition Fuction을 통해 구한 다음 샘플링 포인트를 샘플에 추가함}
+             \PY{n}{sampleXs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{nextX}\PY{p}{]}\PY{p}{)}
+             \PY{n}{sampleY} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{nextX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{nextX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{sampleY} \PY{o}{+}\PY{o}{=} \PY{n}{S\PYZus{}X}
+             \PY{n}{sampleYs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleY} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} kernel Learning을 시킬경우, 업데이트된 샘플로 parameter를 다시 학습시킴}
+             \PY{k}{if} \PY{n}{kernelLearning} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+             \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Trained Kernel Parameters : \PYZdq{}, trainedTheta, trainedBeta)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}iteration, probing point : \PYZdq{},itr2,\PYZdq{} \PYZdq{},nextX)}
+             
+             \PY{c+c1}{\PYZsh{} showVisualization에 해당하는 itr2인 경우 아래와 같은 그래프를 그려줌}
+             \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} sampling visulaize}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Using MPI sampling After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{Mus} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{)}\PY{p}{,} \PY{n}{Mus} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{)}\PY{p}{,}
+                              \PY{n}{color}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)} \PY{c+c1}{\PYZsh{} training set은 빨강색 +로 표시함}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{trueY}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} 실제함수는 초록색 실선으로 나타냄}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bo\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)} \PY{c+c1}{\PYZsh{} 예측값은 파란색 점으로 나타나며, 실선으로 이어짐}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+                 \PY{c+c1}{\PYZsh{} MPI}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PI After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{probImprovments}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+                 \PY{c+c1}{\PYZsh{} MEI}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EI After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{expectedImprovments}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Bayesian Optimization Result와 각 Acquisition Function 함수의 변화 비교}
+         \PY{c+c1}{\PYZsh{} 본 코드에서는 MEI(Maximum Expectation Improvment)로 Sampling을 진행함}
+         \PY{n}{snr} \PY{o}{=} \PY{l+m+mf}{0.1}
+         \PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+         \PY{n}{numTruePoints} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{trueY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numTruePoints}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+             \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{trueY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{trueY}\PY{p}{,}\PY{n}{S\PYZus{}X}\PY{p}{)}
+         
+         \PY{n}{sampleXs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{sampleYs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{n}{showVisualization} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{19}\PY{p}{]}
+         \PY{n}{numTrials} \PY{o}{=} \PY{n}{showVisualization}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{+}\PY{l+m+mi}{1}
+         \PY{n}{trainedTheta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{trainedBeta} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{kernelLearning} \PY{o}{=} \PY{k+kc}{True}
+         
+         \PY{c+c1}{\PYZsh{} acquisitionFunction = \PYZsq{}ProbImprovement\PYZsq{}}
+         \PY{n}{acquisitionFunction} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ExpectedImprovement}\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{plotN} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{c+c1}{\PYZsh{}초기 X값 설정}
+         \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             \PY{n}{sampleX} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)}
+             \PY{n}{sampleXs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleX}\PY{p}{]}\PY{p}{)}
+             \PY{n}{sampleY} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{sampleX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{sampleY} \PY{o}{+}\PY{o}{=} \PY{n}{S\PYZus{}X}
+             \PY{n}{sampleYs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleY} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} kernel Learning을 시킬경우, 아래의 조건문을 실행함}
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}Learning Kernel Parameters.........\PYZdq{})}
+         \PY{k}{if} \PY{n}{kernelLearning} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+         \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}Trained Kernel Parameters : \PYZdq{}, trainedTheta, trainedBeta)}
+         
+         \PY{c+c1}{\PYZsh{} Bayesian Optimization 수행}
+         \PY{k}{for} \PY{n}{itr2} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{numTrials}\PY{p}{)}\PY{p}{:}
+         
+             \PY{n}{Xs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+             \PY{n}{Mus} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{Sigmas} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculating Predicted Values.........\PYZdq{})}
+             \PY{k}{for} \PY{n}{itr1} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Xs}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{mu}\PY{p}{,} \PY{n}{var} \PY{o}{=} \PY{n}{PredictionGaussianProcessRegression}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n}{C\PYZus{}inv}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{,}
+                                                               \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{[}\PY{n}{itr1}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{Mus}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mu}\PY{p}{)}
+                 \PY{n}{Sigmas}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculated Results : \PYZdq{},Mus,Sigmas)}
+         
+             \PY{c+c1}{\PYZsh{} Acquisition Function에 따라 위에서 구한 파라미터를 대입하여 다음 샘플링 포인트를 찾아줌}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Calculating Acquisition Values.........\PYZdq{})}
+             \PY{k}{if} \PY{n}{acquisitionFunction} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ProbImprovement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{nextX}\PY{p}{,} \PY{n}{probImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionProbImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                     \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{expectedImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionExpectedImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+             \PY{k}{if} \PY{n}{acquisitionFunction} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ExpectedImprovement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{nextX}\PY{p}{,} \PY{n}{expectedImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionExpectedImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                     \PY{n}{\PYZus{}}\PY{p}{,} \PY{n}{probImprovments} \PY{o}{=} \PY{n}{AcquisitionFunctionProbImprovement}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{n}{m}\PY{p}{,} \PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{n}{Sigmas}\PY{p}{)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Learning Kernel Parameters.........\PYZdq{})}
+             \PY{c+c1}{\PYZsh{} Acquisition Fuction을 통해 구한 다음 샘플링 포인트를 샘플에 추가함}
+             \PY{n}{sampleXs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{nextX}\PY{p}{]}\PY{p}{)}
+             \PY{n}{sampleY} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{S\PYZus{}X} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{nextX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{around}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{nextX}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb}{pow}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{sampleY} \PY{o}{+}\PY{o}{=} \PY{n}{S\PYZus{}X}
+             \PY{n}{sampleYs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{sampleY} \PY{o}{+} \PY{n}{snr} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} kernel Learning을 시킬경우, 업데이트된 샘플로 parameter를 다시 학습시킴}
+             \PY{k}{if} \PY{n}{kernelLearning} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta} \PY{o}{=} \PY{n}{KernelHyperParameterLearning}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{)}
+             \PY{n}{C}\PY{p}{,} \PY{n}{C\PYZus{}inv} \PY{o}{=} \PY{n}{KernelCalculation}\PY{p}{(}\PY{n}{trainedTheta}\PY{p}{,} \PY{n}{trainedBeta}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{p}{,} \PY{n}{sampleXs}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}Trained Kernel Parameters : \PYZdq{}, trainedTheta, trainedBeta)}
+         
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}iteration, probing point : \PYZdq{},itr2,\PYZdq{} \PYZdq{},nextX)}
+             
+             \PY{c+c1}{\PYZsh{} showVisualization에 해당하는 itr2인 경우 아래와 같은 그래프를 그려줌}
+             \PY{k}{if} \PY{n}{itr2} \PY{o+ow}{in} \PY{n}{showVisualization}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{} sampling visulaize}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Using MEI sampling After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{Mus} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{)}\PY{p}{,} \PY{n}{Mus} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{Sigmas}\PY{p}{)}\PY{p}{,}
+                              \PY{n}{color}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleXs}\PY{p}{,} \PY{n}{sampleYs}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)} \PY{c+c1}{\PYZsh{} training set은 빨강색 +로 표시함}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{trueY}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} 실제함수는 초록색 실선으로 나타냄}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{Mus}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bo\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)} \PY{c+c1}{\PYZsh{} 예측값은 파란색 점으로 나타나며, 실선으로 이어짐}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+                 \PY{c+c1}{\PYZsh{} MPI}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PI After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{probImprovments}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 
+                 \PY{c+c1}{\PYZsh{} MEI}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{plotN}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EI After }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ sampling}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sampleYs}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Xs}\PY{p}{,} \PY{n}{expectedImprovments}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{plotN} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{uxacb0uxacfcuxd574uxc11duxbd80}{%
+\subsubsection{결과해석부}\label{uxacb0uxacfcuxd574uxc11duxbd80}}
+
+위 단락은 Maximum Probability Improvment(MPI)를 기준으로 샘플링을 진행한
+과정이고, 아래 단락은 Maximum Expected Improvment(MEI)를 기준으로
+샘플링을 진행한 결과입니다. 각 그래프의 첫 번째 열에서 초록색 실선은
+실제함수를, 빨강색 + 점은 샘플링 값을, 파랑색 실선은 Acquisition
+Fuction을 통해 구한 샘플의 포인트 집합에서 가우시안 프로세스 리그레션을
+바탕으로 구한 예측값(평균값)을 연결한 선입니다. 파랑색 실선 주위에
+표시된 영역은 각 지점에서 예측된 함수의 분산을 나타냅니다. 위 그래프의
+첫 번째 열를 통해 샘플링 횟수가 증가할수록 샘플링 포인트가 실제 함수의
+최댓값과 가까워지는 것을 확인할 수 있습니다. 그래프의 두 번째 열은
+샘플링 횟수에 따른 Probability Improvment(PI) 함수의 변화, 세 번째 열은
+샘플링 횟수에 따른 Expected Improvment(EI) 함수의 변화를 나타낸
+그래프입니다.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
