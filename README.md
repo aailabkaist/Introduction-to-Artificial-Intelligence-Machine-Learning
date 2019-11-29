@@ -36,6 +36,10 @@
   
   Week 14. Neural Network
   
+  Week 16. Recurrent Neural Network
+  
+  Week 17. Deep Generative Model
+  
 ##Online Lectures Video :
   You can find Online Lectures on YouTube.
   
