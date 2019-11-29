@@ -40,6 +40,8 @@
   
   Week 17. Deep Generative Model
   
+  Week 18. Undirected Probabilistic Graphical Model
+  
 ##Online Lectures Video :
   You can find Online Lectures on YouTube.
   
